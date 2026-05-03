@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Bestie 🌿</title>
+    <link rel="icon" type="image/jpg" href="avatar.jpg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 2 CÁI LOA PHÁT NHẠC -->
+    <audio id="bgMusic" src="a thousand years.mp3" loop></audio>
+    <audio id="countdownMusic" src="countdown.mp3" loop></audio>
+
+    <!-- Nền Matrix chạy phía dưới cùng -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- MÀN HÌNH 1: NHẬP PASS -->
+    <div id="login-screen" class="screen active">
+        <form id="loginForm" class="terminal-box">
+            <p>ENTER SECURITY KEY:</p>
+            <input type="password" id="passwordInput" autofocus maxlength="6" placeholder="******">
+            <button type="submit" style="display: none;">ACCESS</button>
+            <p id="errorMessage">ACCESS DENIED!</p>
+        </form>
+    </div>
+
+    <!-- MÀN HÌNH 2: LỜI CHÚC & ẢNH 1 -->
+    <div id="message-screen" class="screen">
+        <div class="gif-background"></div>
+        <div class="card">
+            <div class="image-container">
+                <img src="kendu.jpg" alt="Bestie">
+            </div>
+            <div class="text-content">
+                <h2 id="messageTitle" class="fade-text">Happy Birthday, Bestie! 🌿</h2>
+                <p id="messageBody" class="fade-text">Gửi nhỏ cốt của t, chúc m tuổi mới luôn xinh gái, học giỏi và mãi là "đồng bọn" của t nha!</p>
+            </div>
+            <button type="button" id="nextBtn">NEXT ➔</button>
+        </div>
+    </div>
+
+    <!-- MÀN HÌNH 3: ĐẾM NGƯỢC -->
+    <div id="countdown-screen" class="screen">
+        <div id="countdown-number"></div>
+    </div>
+
+    <!-- MÀN HÌNH 3.5: BÁNH KEM -->
+    <div id="cake-screen" class="screen">
+        <div style="text-align: center;">
+            <img src="cake.gif" alt="Cake" class="glowing-cake">
+            <h2 class="glow-text" style="font-size: 2rem; margin-top: 20px;">Make a wish... 🎂</h2>
+        </div>
+    </div>
+
+    <!-- MÀN HÌNH 4: ẢNH 2 & CHỮ NẢY TỪNG NHỊP -->
+    <div id="final-screen" class="screen">
+        <div class="final-content" style="text-align: center;">
+            <div class="image-container final-image">
+                <img src="kimin.jpg" alt="Bestie 2">
+            </div>
+            
+            <h1 class="glow-text" style="margin-top: 30px;">
+                <span class="pop-word">TUỔI</span>
+                <span class="pop-word">MỚI</span>
+                <span class="pop-word">THẬT</span>
+                <span class="pop-word">RỰC</span>
+                <span class="pop-word">RỠ</span>
+                <span class="pop-word">NHÁ</span>
+                <span class="pop-word">🫰🏻</span>
+            </h1>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

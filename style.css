@@ -1,0 +1,213 @@
+:root {
+    --primary-green: #b2d8b2; 
+    --mint-green: #e0f2f1;
+    --dark-green: #2d4f2d;
+    --error-red: #ff8a80;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #050505; 
+    color: var(--mint-green);
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+}
+
+
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* --- MÀN HÌNH 1 --- */
+.terminal-box {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(15, 15, 15, 0.95);
+    padding: 40px 20px;
+    border: 1px solid var(--primary-green);
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(178, 216, 178, 0.1);
+}
+
+#passwordInput {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--primary-green);
+    color: var(--primary-green);
+    font-size: 1.8rem;
+    text-align: center;
+    outline: none;
+    width: 70%;
+    margin: 15px 0;
+    letter-spacing: 5px;
+    transition: all 0.3s;
+}
+
+#errorMessage {
+    color: var(--error-red);
+    font-weight: bold;
+    display: none; 
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+
+.gif-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('sakura-pixel.gif'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1; 
+    opacity: 1;
+}
+
+.card {
+    background: rgba(20, 20, 20, 0.75); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 30px;
+    border-radius: 25px;
+    text-align: center;
+    width: 100%;
+    max-width: 380px;
+    border: 1px solid rgba(178, 216, 178, 0.5);
+    position: relative; 
+    z-index: 2; /* Nổi lên trên GIF */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.image-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 4px;
+    background: linear-gradient(45deg, var(--primary-green), #ffffff, var(--dark-green));
+    box-shadow: 0 0 20px var(--primary-green);
+    margin-bottom: 10px;
+}
+
+.fade-text {
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.fade-text.hide {
+    opacity: 0;
+}
+
+#nextBtn {
+    margin-top: 25px;
+    padding: 12px 35px;
+    background: var(--primary-green);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#nextBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--primary-green);
+}
+
+
+#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+#countdown-number {
+    font-size: 10rem;
+    font-weight: bold;
+    text-shadow: 0 0 30px var(--primary-green);
+}
+
+.glow-text {
+    font-size: 2.5rem;
+    text-align: center;
+    text-shadow: 0 0 20px var(--primary-green);
+    margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+    .glow-text { font-size: 4rem; }
+    .card { max-width: 500px; padding: 40px; }
+    .image-container img { width: 180px; height: 180px; }
+}
+
+@keyframes fadeOutZoom {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.5); visibility: hidden; }
+}
+
+@keyframes fadeInZoom {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.glowing-cake {
+    width: 250px;
+    filter: drop-shadow(0 0 20px var(--primary-green));
+    animation: pulseCake 2s infinite ease-in-out;
+}
+
+@keyframes pulseCake {
+    0% { transform: scale(1); filter: drop-shadow(0 0 20px #b2d8b2); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 50px #fff); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 20px #b2d8b2); }
+}
+
+
+.final-image {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 1s ease-out;
+}
+
+.final-image.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+.pop-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px) scale(0.8);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin: 0 5px;
+}
+
+.pop-word.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
