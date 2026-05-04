@@ -1,228 +1,136 @@
 :root {
-    --primary-green: #b2d8b2; 
-    --mint-green: #e0f2f1;
-    --dark-green: #2d4f2d;
-    --error-red: #ff8a80;
+    --mint-green: #b2d8b2;
+    --error-red: #ff4d4d;
 }
 
+/* --- TỔNG QUAN BODY --- */
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #050505; 
+    /* Nền tỏa ánh sáng lục bảo siêu sâu thẳm */
+    background: radial-gradient(circle at 50% 50%, #0d330d 0%, #041204 50%, #000000 100%); 
     color: var(--mint-green);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', monospace; 
     overflow: hidden;
 }
 
+/* --- MƯA MA TRẬN CHẠY DƯỚI CÙNG --- */
+#matrixCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Cố tình cho nằm dưới cùng */
+}
 
+/* --- KHUNG CHỨA CÁC MÀN HÌNH --- */
 .screen {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 10;
-    padding: 20px;
-    box-sizing: border-box;
+    z-index: 10; /* Nằm đè lên ma trận */
 }
 
 .screen.active {
     display: flex;
 }
 
-/* --- MÀN HÌNH 1 --- */
-.terminal-box {
-    width: 100%;
-    max-width: 400px;
-    background: rgba(15, 15, 15, 0.95);
-    padding: 40px 20px;
-    border: 1px solid var(--primary-green);
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 0 30px rgba(178, 216, 178, 0.1);
-}
-
-#passwordInput {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid var(--primary-green);
-    color: var(--primary-green);
-    font-size: 1.8rem;
-    text-align: center;
-    outline: none;
-    width: 70%;
-    margin: 15px 0;
-    letter-spacing: 5px;
-    transition: all 0.3s;
-}
-
-#errorMessage {
-    color: var(--error-red);
-    font-weight: bold;
-    display: none; 
-    margin-top: 10px;
-    letter-spacing: 2px;
-}
-
-
-.gif-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('sakura-pixel.gif'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 1; 
-    opacity: 1;
-}
-
-.card {
-    background: rgba(20, 20, 20, 0.75); 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 30px;
-    border-radius: 25px;
-    text-align: center;
-    width: 100%;
-    max-width: 380px;
-    border: 1px solid rgba(178, 216, 178, 0.5);
-    position: relative; 
-    z-index: 2; /* Nổi lên trên GIF */
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-}
-
-.image-container img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    padding: 4px;
-    background: linear-gradient(45deg, var(--primary-green), #ffffff, var(--dark-green));
-    box-shadow: 0 0 20px var(--primary-green);
-    margin-bottom: 10px;
-}
-
-.fade-text {
-    opacity: 1;
-    transition: opacity 0.6s ease-in-out;
-}
-
-.fade-text.hide {
-    opacity: 0;
-}
-
-#nextBtn {
-    margin-top: 25px;
-    padding: 12px 35px;
-    background: var(--primary-green);
-    color: #1a1a1a;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-#nextBtn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px var(--primary-green);
-}
-
-
-#matrixCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 0;
-}
-
-#countdown-number {
-    font-size: 10rem;
-    font-weight: bold;
-    text-shadow: 0 0 30px var(--primary-green);
-}
-
-.glow-text {
-    font-size: 2.5rem;
-    text-align: center;
-    text-shadow: 0 0 20px var(--primary-green);
-    margin-bottom: 10px;
-}
-
-@media (min-width: 768px) {
-    .glow-text { font-size: 4rem; }
-    .card { max-width: 500px; padding: 40px; }
-    .image-container img { width: 180px; height: 180px; }
-}
-
-@keyframes fadeOutZoom {
-    0% { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: scale(1.5); visibility: hidden; }
-}
-
-@keyframes fadeInZoom {
-    0% { opacity: 0; transform: scale(0.8); }
-    100% { opacity: 1; transform: scale(1); }
-}
-
-.glowing-cake {
-    width: 250px;
-    filter: drop-shadow(0 0 20px var(--primary-green));
-    animation: pulseCake 2s infinite ease-in-out;
-}
-
-@keyframes pulseCake {
-    0% { transform: scale(1); filter: drop-shadow(0 0 20px #b2d8b2); }
-    50% { transform: scale(1.05); filter: drop-shadow(0 0 50px #fff); }
-    100% { transform: scale(1); filter: drop-shadow(0 0 20px #b2d8b2); }
-}
-
-
-.final-image {
-    opacity: 0;
-    transform: scale(0.5);
-    transition: all 1s ease-out;
-}
-
-.final-image.show {
-    opacity: 1;
-    transform: scale(1);
-}
-
-
-.pop-word {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(30px) scale(0.8);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    margin: 0 5px;
-}
-
-.pop-word.show {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
+/* =========================================
+   MÀN HÌNH 1: SECURITY (CÓ NỀN GIF)
+   ========================================= */
 #login-screen {
     background-image: url('background.gif'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     
-    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5); 
-    
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
+    /* Lớp kính đen mờ đè lên GIF để không bị chìm khung nhập pass */
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6); 
 }
+
+/* KHUNG NHẬP PASS GLASSMORPHISM CYBERPUNK CHÁY PHỐ */
+.terminal-box {
+    background: rgba(10, 25, 10, 0.6); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
+    border: 2px solid rgba(178, 216, 178, 0.8); 
+    box-shadow: 0 0 80px rgba(178, 216, 178, 0.45), inset 0 0 40px rgba(178, 216, 178, 0.25); 
+    padding: 40px 20px;
+    border-radius: 16px; 
+    text-align: center;
+    max-width: 400px;
+    width: 85%;
+}
+
+.terminal-box p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px #b2d8b2;
+}
+
+/* Ô GÕ PASS BÍ MẬT */
+#passwordInput {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #b2d8b2;
+    color: #b2d8b2;
+    font-family: 'JetBrains Mono', monospace; 
+    font-size: 2.2rem;
+    text-align: center;
+    width: 65%;
+    outline: none;
+    padding: 5px 0;
+    letter-spacing: 12px;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px #b2d8b2;
+}
+
+#passwordInput:focus {
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    text-shadow: 0 0 15px #fff;
+    box-shadow: 0 15px 15px -15px #b2d8b2;
+}
+
+#errorMessage {
+    color: var(--error-red);
+    display: none;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+/* =========================================
+   MÀN HÌNH 2: THẺ LỜI CHÚC & ẢNH
+   ========================================= */
+.card {
+    background: rgba(10, 25, 10, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(178, 216, 178, 0.3);
+    box-shadow: 0 0 30px rgba(178, 216, 178, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    max-width: 350px;
+    width: 85%;
+}
+
+.image-container {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--mint-green);
+    box-shadow: 0 0 20px
