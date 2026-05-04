@@ -113,6 +113,21 @@ body, html {
 /* =========================================
    MÀN HÌNH 2: THẺ LỜI CHÚC & ẢNH
    ========================================= */
+/* --- NỀN SAKURA CHO MÀN HÌNH 2 --- */
+.gif-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Nhớ đổi chữ 'sakura.gif' thành đúng cái tên file ảnh hoa anh đào của bà nha */
+    background-image: url('sakura.gif'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1; /* Nằm dưới cái khung thiệp */
+    opacity: 0.85; /* Hơi mờ mờ tí cho cái thẻ lời chúc nó nổi bật lên */
+}
 .card {
     background: rgba(10, 25, 10, 0.7);
     backdrop-filter: blur(10px);
